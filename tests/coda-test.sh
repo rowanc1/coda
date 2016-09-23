@@ -7,13 +7,14 @@ echo "files = ver.txt" >> .bumpversion.cfg
 echo "0.0.0" > ver.txt
 
 git init
+git config --global user.email "test@test.com"
+git config --global user.name "test"
 git add .bumpversion.cfg
 git add ver.txt
 git commit -m "test commit"
 
-function cleanup()
+function cleanup
 {
-    echo $1
     rm -rf .git/
     rm .bumpversion.cfg
     rm ver.txt
