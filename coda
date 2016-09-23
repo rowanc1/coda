@@ -84,3 +84,4 @@ PARSE="(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(b(?P<beta>\d+))?"
 echo ... executing: bumpversion $PART --serialize $SERIALIZE --parse $PARSE --commit
 bumpversion $PART --serialize $SERIALIZE --parse $PARSE --commit
 echo ... Done!
+exit

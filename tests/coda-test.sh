@@ -13,7 +13,7 @@ git add .bumpversion.cfg
 git add ver.txt
 git commit -m "test commit"
 
-function cleanup
+cleanup ()
 {
     rm -rf .git/
     rm .bumpversion.cfg
