@@ -62,8 +62,8 @@ Usage
 
 New Release
 -----------
-When you are ready for a new release, specify if the release is `major`, `minor`, or
-a `patch`, and optionally `beta` if this is an unstable, beta release:
+When you are ready for a new release, specify if the release is :code:`major`, :code:`minor`, or
+a :code:`patch`, and optionally :code:`beta` if this is an unstable, beta release:
 
 .. code:: bash
 
@@ -77,8 +77,8 @@ a `patch`, and optionally `beta` if this is an unstable, beta release:
 
 From Beta
 ---------
-When you are in beta, there are two options: `beta` bumps to a new beta version
-and `release` removes the beta tag for a stable release.
+When you are in beta, there are two options: :code:`beta` bumps to a new beta version
+and :code:`release` removes the beta tag for a stable release.
 
 .. code:: bash
 
@@ -89,14 +89,14 @@ and `release` removes the beta tag for a stable release.
 Notes
 -----
 coda must be run from within the same directory as the .bumpversion.cfg file.
-Also, coda passes the `--commit` tag to bumpversion, so if you are within a git or
+Also, coda passes the :code:`--commit` tag to bumpversion, so if you are within a git or
 Mercurial project the new version number will be automatically committed (with git,
-this can be undone using `git reset HEAD~1`). Please ensure that you have committed
+this can be undone using :code:`git reset HEAD~1`). Please ensure that you have committed
 all changes before using coda to bump the version.
 
 The syntax chosen for beta version numbers follows recommendations from
 `PEP 440 <https://www.python.org/dev/peps/pep-0440/>`_. This syntax is
-compatible with the PyPI pre-release support (i.e. `pip install --pre mypackage`).
+compatible with the PyPI pre-release support (i.e. :code:`pip install --pre mypackage`).
 However, like bumpversion, coda just acts on text files; it's not specific to any
 programming language.
 
