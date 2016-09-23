@@ -1,0 +1,88 @@
+#!/bin/bash
+
+# coda: a bumpversion utility with beta support
+
+if ! which bumpversion >/dev/null; then
+    echo coda is dependent on Python package \'bumpversion\' - To install:
+    echo ~$ pip install bumpversion
+    echo
+    exit
+fi
+
+if
+
+if ! [ -e ".bumpversion.cfg" ]; then
+    echo coda must run in the project directory with the bumpversion
+    echo config file \'.bumpversion.cfg\'
+    echo
+    exit
+fi
+
+if [ -z "$1" ]; then
+    echo coda: a bumpversion utility with beta support
+    echo
+    echo To bump a stable version:
+    echo \ \ \ \ Specify \'major\', \'minor\', or \'patch\' with optional
+    echo \ \ \ \ second argument \'beta\'
+    echo
+    echo From a beta version:
+    echo \ \ \ \ Specify \'beta\' to bumnp the beta version, or
+    echo \ \ \ \ \'release\' when ready to move to a stable version
+    echo
+    echo Examples:
+    echo \ \ \ \ 0.0.1 -> 0.0.2b0:\ \ \ ~$ coda patch beta
+    echo \ \ \ \ 0.0.2b0 -> 0.0.2b1:\ ~$ coda beta
+    echo \ \ \ \ 0.0.2b1 -> 0.0.2:\ \ \ ~$ coda release
+    echo \ \ \ \ 0.0.2 -> 0.0.3:\ \ \ \ \ ~$ coda patch
+    echo \ \ \ \ 0.0.3 -> 0.1.0b0:\ \ \ ~$ coda minor beta
+    echo \ \ \ \ 0.1.0b0 -> 0.1.0:\ \ \ ~$ coda release
+    echo \ \ \ \ 0.1.0 -> 1.0.0:\ \ \ \ \ ~$ coda major
+    echo
+fi
+
+if [ -n "$(grep current_version .bumpversion.cfg | cut -d \= -f 2 | cut -d \. -f 3 | grep b)" ]; then
+    echo Currently on beta version $(grep current_version .bumpversion.cfg | cut -d \= -f 2)
+    if [ "$1" = "beta" ]; then
+        echo ... Bumping beta version
+        SERIALIZE={major}.{minor}.{patch}b{beta}
+        PART=beta
+    elif [ "$1" = "release" ]; then
+        echo ... Bumping to stable version
+        SERIALIZE={major}.{minor}.{patch}
+        PART=beta
+    else
+        echo ... You must specify either \'beta\' or \'release\'
+        echo
+        exit
+    fi
+else
+    echo Currently on stable version $(grep current_version .bumpversion.cfg | cut -d \= -f 2)
+    if [ "$1" = "major" ]; then
+        PART=major
+    elif [ "$1" = "minor" ]; then
+        PART=minor
+    elif [ "$1" = "patch" ]; then
+        PART=patch
+    else
+        echo Specify \'major\', \'minor\', or \'patch\' optionaly followed by \'beta\'
+        echo
+        exit
+    fi
+    if [ -z "$2" ]; then
+        echo ... $PART version bump, skipping beta
+        SERIALIZE={major}.{minor}.{patch}
+    elif [ "$2" = "beta" ]; then
+        echo ... $PART version bump, entering beta
+        SERIALIZE={major}.{minor}.{patch}b{beta}
+    else
+        echo ... Second input must be \'beta\' or nothing
+        echo
+        exit
+    fi
+fi
+PARSE="(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(b(?P<beta>\d+))?"
+echo
+echo executing: bumpversion $PART --serialize $SERIALIZE --parse $PARSE --commit
+bumpversion $PART --serialize $SERIALIZE --parse $PARSE --commit
+echo ... Done!
+echo

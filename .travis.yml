@@ -1,0 +1,27 @@
+language: python
+python:
+  - 2.7
+
+sudo: false
+
+cache:
+  timeout: 3600
+  pip: true
+
+env:
+    - TEST_DIR="test"
+
+before_install:
+    - export PATH=/home/travis/coda/bin:$PATH
+
+# Install packages
+install:
+    make install
+
+# Run test
+script:
+  - make test
+
+notifications:
+  slack: 3point:n4uGopqXrpbYFbslpV5z0tyO
+  email: false
