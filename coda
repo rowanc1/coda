@@ -5,7 +5,7 @@
 if ! which bumpversion >/dev/null; then
     echo coda is dependent on Python package \'bumpversion\' - To install:
     echo ~$ pip install bumpversion
-    echo
+    echo ... Exiting
     exit
 fi
 
@@ -14,7 +14,7 @@ if
 if ! [ -e ".bumpversion.cfg" ]; then
     echo coda must run in the project directory with the bumpversion
     echo config file \'.bumpversion.cfg\'
-    echo
+    echo ... Exiting
     exit
 fi
 
@@ -52,7 +52,7 @@ if [ -n "$(grep current_version .bumpversion.cfg | cut -d \= -f 2 | cut -d \. -f
         PART=beta
     else
         echo ... You must specify either \'beta\' or \'release\'
-        echo
+        echo ... Exiting
         exit
     fi
 else
@@ -65,7 +65,7 @@ else
         PART=patch
     else
         echo Specify \'major\', \'minor\', or \'patch\' optionaly followed by \'beta\'
-        echo
+        echo ... Exiting
         exit
     fi
     if [ -z "$2" ]; then
@@ -76,13 +76,11 @@ else
         SERIALIZE={major}.{minor}.{patch}b{beta}
     else
         echo ... Second input must be \'beta\' or nothing
-        echo
+        echo ... Exiting
         exit
     fi
 fi
 PARSE="(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(b(?P<beta>\d+))?"
-echo
-echo executing: bumpversion $PART --serialize $SERIALIZE --parse $PARSE --commit
+echo ... executing: bumpversion $PART --serialize $SERIALIZE --parse $PARSE --commit
 bumpversion $PART --serialize $SERIALIZE --parse $PARSE --commit
 echo ... Done!
-echo

@@ -91,7 +91,8 @@ Notes
 coda must be run from within the same directory as the .bumpversion.cfg file.
 Also, coda passes the `--commit` tag to bumpversion, so if you are within a git or
 Mercurial project the new version number will be automatically committed (with git,
-this can be undone using `git reset HEAD~1`).
+this can be undone using `git reset HEAD~1`). Please ensure that you have committed
+all changes before using coda to bump the version.
 
 The syntax chosen for beta version numbers follows recommendations from
 `PEP 440 <https://www.python.org/dev/peps/pep-0440/>`_. This syntax is
