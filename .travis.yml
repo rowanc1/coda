@@ -12,6 +12,8 @@ env:
     - TEST_DIR="test"
 
 before_install:
+    - git config --global user.email "test@test.com"
+    - git config --global user.name "test"
     - export PATH=/home/travis/coda/bin:$PATH
 
 # Install packages
