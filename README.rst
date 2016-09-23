@@ -48,7 +48,7 @@ coda only requires a simple bumpversion config file called .bumpversion.cfg with
 ::
 
     [bumpversion]
-    current_version = 0.0.1b1
+    current_version = 0.0.1
     files = coda README.rst tests/coda-tests.sh
 
 **current_version** is the current version string, to be updated when coda is run
