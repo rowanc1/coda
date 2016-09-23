@@ -12,6 +12,7 @@ env:
     - TEST_DIR="test"
 
 before_install:
+    - pip install bumpversion
     - export PATH=/home/travis/coda/bin:$PATH
 
 # Install packages
