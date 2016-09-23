@@ -35,4 +35,4 @@ uninstall:
 	fi
 
 test:
-	cd tests && sh ./coda-test.sh
+	cd tests && bash ./coda-test.sh
