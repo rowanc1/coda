@@ -22,6 +22,11 @@ cleanup ()
     exit $1
 }
 
+# All this should do nothing (except print help)
+coda
+coda junk
+coda patch junk
+coda release
 
 if ! [ "$(cat ver.txt)" = "0.0.0" ]; then
     cleanup 1
