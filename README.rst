@@ -90,12 +90,12 @@ Notes
 -----
 - coda must be run from within the same directory as the .bumpversion.cfg file.
 - coda passes the :code:`--commit` tag to bumpversion, so if you are within a git or
-Mercurial project the new version number will be automatically committed (with git,
-this can be undone using :code:`git reset HEAD~1`). Please ensure that you have committed
-all changes before using coda to bump the version.
+  Mercurial project the new version number will be automatically committed (with git,
+  this can be undone using :code:`git reset HEAD~1`). Please ensure that you have committed
+  all changes before using coda to bump the version.
 - coda passes the :code:`--tag` tag to bumpversion. This tags the commit with the
-version number locally. This tag will only be transfered to the remote server if it is
-explicitly pushed with :code:`git push origin --tags`
+  version number locally. This tag will only be transfered to the remote server if it is
+  explicitly pushed with :code:`git push origin --tags`
 
 The syntax chosen for beta version numbers follows recommendations from
 `PEP 440 <https://www.python.org/dev/peps/pep-0440/>`_. This syntax is
