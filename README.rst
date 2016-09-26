@@ -88,23 +88,20 @@ and :code:`release` removes the beta tag for a stable release.
 
 Notes
 -----
-coda must be run from within the same directory as the .bumpversion.cfg file.
-Also, coda passes the :code:`--commit` tag to bumpversion, so if you are within a git or
+- coda must be run from within the same directory as the .bumpversion.cfg file.
+- coda passes the :code:`--commit` tag to bumpversion, so if you are within a git or
 Mercurial project the new version number will be automatically committed (with git,
 this can be undone using :code:`git reset HEAD~1`). Please ensure that you have committed
 all changes before using coda to bump the version.
+- coda passes the :code:`--tag` tag to bumpversion. This tags the commit with the
+version number locally. This tag will only be transfered to the remote server if it is
+explicitly pushed with :code:`git push origin --tags`
 
 The syntax chosen for beta version numbers follows recommendations from
 `PEP 440 <https://www.python.org/dev/peps/pep-0440/>`_. This syntax is
 compatible with the PyPI pre-release support (i.e. :code:`pip install --pre mypackage`).
 However, like bumpversion, coda just acts on text files; it's not specific to any
 programming language.
-
-Finally, keep in mind coda is a very simple utility that simply increments and
-replaces version strings throughout your code. For effective version management
-and beta support, make sure to also write informative release notes,
-tag releases with the version number, and ensure the new version is
-sufficiently tested and correctly deployed.
 
 Bugs
 ====
