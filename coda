@@ -50,7 +50,7 @@ if [ -n "$(grep current_version .bumpversion.cfg | cut -d \= -f 2 | cut -d \. -f
         SERIALIZE={major}.{minor}.{patch}
         PART=beta
     else
-        echo "... You must specify either \'beta\' or \'release\'"
+        echo "... You must specify either 'beta' or 'release'"
         echo "... Exiting"
         exit
     fi
@@ -63,7 +63,7 @@ else
     elif [ "$1" = "patch" ]; then
         PART=patch
     else
-        echo "Specify \'major\', \'minor\', or \'patch\' optionaly followed by \'beta\'"
+        echo "Specify 'major', 'minor', or 'patch' optionally followed by 'beta'"
         echo "... Exiting"
         exit
     fi
@@ -74,7 +74,7 @@ else
         echo "... $PART version bump, entering beta"
         SERIALIZE={major}.{minor}.{patch}b{beta}
     else
-        echo "... Second input must be \'beta\' or nothing"
+        echo "... Second input must be 'beta' or nothing"
         echo "... Exiting"
         exit
     fi
