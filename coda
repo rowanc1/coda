@@ -40,7 +40,7 @@ if [ -z "$1" ]; then
 fi
 
 if [ -n "$(grep current_version .bumpversion.cfg | cut -d \= -f 2 | cut -d \. -f 3 | grep b)" ]; then
-    echo "Currently on beta version $(grep current_version .bumpversion.cfg | cut -d \= -f 2)"
+    echo "Currently on beta version:$(grep current_version .bumpversion.cfg | cut -d \= -f 2)"
     if [ "$1" = "beta" ]; then
         echo "... Bumping beta version"
         SERIALIZE={major}.{minor}.{patch}b{beta}
@@ -55,7 +55,7 @@ if [ -n "$(grep current_version .bumpversion.cfg | cut -d \= -f 2 | cut -d \. -f
         exit
     fi
 else
-    echo "Currently on stable version $(grep current_version .bumpversion.cfg | cut -d \= -f 2)"
+    echo "Currently on stable version:$(grep current_version .bumpversion.cfg | cut -d \= -f 2)"
     if [ "$1" = "major" ]; then
         PART=major
     elif [ "$1" = "minor" ]; then
@@ -83,3 +83,4 @@ PARSE="(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(b(?P<beta>\d+))?"
 echo "... executing: bumpversion $PART --serialize $SERIALIZE --parse $PARSE --commit"
 bumpversion $PART --serialize $SERIALIZE --parse $PARSE --commit --tag
 echo "... Done!"
+echo "Now on version:$(grep current_version .bumpversion.cfg | cut -d \= -f 2)"
